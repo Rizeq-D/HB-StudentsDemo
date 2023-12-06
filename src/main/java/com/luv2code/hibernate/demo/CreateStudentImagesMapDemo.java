@@ -26,10 +26,9 @@ public class CreateStudentImagesMapDemo {
             Student tempStudent = new Student("Rami", "Malek", "rami@gmail.com");
             Map<String, String> theImages = tempStudent.getImages();
 
-            theImages.put("photo1.jpg", "photo1");
-            theImages.put("photo2.jpg", "photo2");
-            theImages.put("photo3.jpg", "photo3");
-            theImages.put("photo4.jpg", "photo4");
+            theImages.put("photo1.jpg", "Photo1");
+            theImages.put("photo2.jpg", "Photo2");
+            theImages.put("photo3.jpg", "Photo3");
 
             // start the transaction
             session.beginTransaction();
