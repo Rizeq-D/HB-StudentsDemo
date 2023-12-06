@@ -19,7 +19,7 @@ public class Student {
 
     @ElementCollection
     @CollectionTable(name = "image")
-    @org.hibernate.annotations.OrderBy(clause = "file_name desc") // default asc
+    @org.hibernate.annotations.OrderBy(clause = "file_name") // default asc
     @Column(name = "file_name") // default to images
     private Set<String> images = new LinkedHashSet<String>();
 
@@ -79,6 +79,7 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", images=" + images +
                 '}';
     }
 }
