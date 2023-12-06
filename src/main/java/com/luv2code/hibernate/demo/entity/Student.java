@@ -1,8 +1,7 @@
 package com.luv2code.hibernate.demo.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "student")
@@ -19,9 +18,10 @@ public class Student {
     private String email;
 
     @ElementCollection
-    @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "student_id"))
-    @Column(name = "file_name")
-    private Set<String> images = new HashSet<String>();
+    @CollectionTable(name = "image")
+    @MapKeyColumn(name = "file_name")
+    @Column(name = "image_name")
+    private Map<String, String> images = new HashMap<String, String>();
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -64,11 +64,11 @@ public class Student {
         this.email = email;
     }
 
-    public Set<String> getImages() {
+    public Map<String, String> getImages() {
         return images;
     }
 
-    public void setImages(Set<String> images) {
+    public void setImages(Map<String, String> images) {
         this.images = images;
     }
 

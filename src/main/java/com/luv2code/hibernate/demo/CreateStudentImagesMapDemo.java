@@ -5,9 +5,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-public class CreateStudentImagesSetDemo {
+public class CreateStudentImagesMapDemo {
 
     public static void main( String[] args ) {
         // Create session factory
@@ -22,12 +24,12 @@ public class CreateStudentImagesSetDemo {
         try {
             // Create the object
             Student tempStudent = new Student("Rami", "Malek", "rami@gmail.com");
-            Set<String> theImages = tempStudent.getImages();
+            Map<String, String> theImages = tempStudent.getImages();
 
-            theImages.add("photo1.jpg");
-            theImages.add("photo2.jpg");
-            theImages.add("photo3.jpg");
-            theImages.add("photo4.jpg");
+            theImages.put("photo1.jpg", "photo1");
+            theImages.put("photo2.jpg", "photo2");
+            theImages.put("photo3.jpg", "photo3");
+            theImages.put("photo4.jpg", "photo4");
 
             // start the transaction
             session.beginTransaction();
