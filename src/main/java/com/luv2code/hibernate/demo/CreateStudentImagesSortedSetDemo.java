@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class CreateStudentImagesMapDemo {
+public class CreateStudentImagesSortedSetDemo {
 
     public static void main( String[] args ) {
         // Create session factory
@@ -24,11 +24,13 @@ public class CreateStudentImagesMapDemo {
         try {
             // Create the object
             Student tempStudent = new Student("Rami", "Malek", "rami@gmail.com");
-            Map<String, String> theImages = tempStudent.getImages();
+            Set<String> theImages = tempStudent.getImages();
 
-            theImages.put("photo1.jpg", "Photo1");
-            theImages.put("photo2.jpg", "Photo2");
-            theImages.put("photo3.jpg", "Photo3");
+            theImages.add("photo1.jpg");
+            theImages.add("photo2.jpg");
+            theImages.add("photo3.jpg");
+            theImages.add("photo4.jpg");
+            theImages.add("photo5.jpg");
 
             // start the transaction
             session.beginTransaction();

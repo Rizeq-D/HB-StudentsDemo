@@ -19,9 +19,9 @@ public class Student {
 
     @ElementCollection
     @CollectionTable(name = "image")
-    @MapKeyColumn(name = "file_name")
-    @Column(name = "image_name")
-    private Map<String, String> images = new HashMap<String, String>();
+    @org.hibernate.annotations.OrderBy(clause = "file_name desc") // default asc
+    @Column(name = "file_name") // default to images
+    private Set<String> images = new LinkedHashSet<String>();
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -64,11 +64,11 @@ public class Student {
         this.email = email;
     }
 
-    public Map<String, String> getImages() {
+    public Set<String> getImages() {
         return images;
     }
 
-    public void setImages(Map<String, String> images) {
+    public void setImages(Set<String> images) {
         this.images = images;
     }
 
