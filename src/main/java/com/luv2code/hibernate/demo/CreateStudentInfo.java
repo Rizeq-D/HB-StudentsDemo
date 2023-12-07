@@ -1,6 +1,7 @@
 package com.luv2code.hibernate.demo;
 
 import com.luv2code.hibernate.demo.entity.Student;
+import com.luv2code.hibernate.demo.entity.Address;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,13 +11,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 
-public class CreateStudentImagesSortedSetDemo {
+public class CreateStudentInfo {
 
     public static void main( String[] args ) {
         // Create session factory
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Address.class)
                 .buildSessionFactory();
 
         // Create session
@@ -25,15 +27,12 @@ public class CreateStudentImagesSortedSetDemo {
         try {
             // Create the object
             Student tempStudent = new Student("Rami", "Malek", "rami@gmail.com");
-            Map<String, String> theImages = tempStudent.getImages();
-
-            theImages.put("photo1.jpg", "photo 1");
-            theImages.put("photo2.jpg", "photo 2");
-            theImages.put("photo3.jpg", "photo 3");
+            Address homeAddress = new Address("Street", "City", "11111");
 
             // start the transaction
             session.beginTransaction();
-            System.out.println("saving the student and the images");
+            System.out.println("saving the student's address");
+            tempStudent.setHomeAddress(homeAddress);
             session.persist(tempStudent);
 
             // commit the transaction

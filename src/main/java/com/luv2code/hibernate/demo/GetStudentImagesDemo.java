@@ -30,9 +30,6 @@ public class GetStudentImagesDemo {
             // print the student information
             System.out.println("Student's details: " +student);
 
-            // print associated images
-            System.out.println("the images" +student.getImages());
-
             // commit the transaction
             session.getTransaction().commit();
 

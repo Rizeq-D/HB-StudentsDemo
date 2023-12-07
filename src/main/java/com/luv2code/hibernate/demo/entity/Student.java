@@ -16,63 +16,46 @@ public class Student {
     private String lastName;
     @Column(name = "email")
     private String email;
-
-    @ElementCollection
-    @CollectionTable(name = "image")
-    @MapKeyColumn(name = "file_name")
-    @Column(name = "image_name") // default to images
-    @OrderBy // default asc
-    private SortedMap<String, String> images = new TreeMap<String, String>();
+    @Embedded // the address is embedded, so no need ot any annotation
+    private Address homeAddress;
 
     public Student() {
     }
-
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public SortedMap<String, String> getImages() {
-        return images;
+    public Address getHomeAddress() {
+        return homeAddress;
     }
-
-    public void setImages(SortedMap<String, String> images) {
-        this.images = images;
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
     }
-
     @Override
     public String toString() {
         return "Student{" +
@@ -80,7 +63,6 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", images=" + images +
                 '}';
     }
 }
