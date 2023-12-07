@@ -1,15 +1,10 @@
 package com.luv2code.hibernate.demo;
 
+import com.luv2code.hibernate.demo.entity.Status;
 import com.luv2code.hibernate.demo.entity.Student;
-import com.luv2code.hibernate.demo.entity.Address;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedMap;
 
 public class CreateStudentInfo {
 
@@ -18,7 +13,6 @@ public class CreateStudentInfo {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Student.class)
-                .addAnnotatedClass(Address.class)
                 .buildSessionFactory();
 
         // Create session
@@ -26,14 +20,14 @@ public class CreateStudentInfo {
 
         try {
             // Create the object
-            Student tempStudent = new Student("Rami", "Malek", "rami@gmail.com");
-            Address billingAddress = new Address("Ally", "Stadt", "00000");
+            Student tempStudent1 = new Student("Rami", "Malek", "rami@gmail.com", Status.ACTIVE);
+            Student tempStudent2 = new Student("Tom", "Hanks", "tom@gmail.com", Status.INACTIVE);
 
             // start the transaction
             session.beginTransaction();
-            System.out.println("saving the student's address");
-            tempStudent.setBillingAddress(billingAddress);
-            session.persist(tempStudent);
+            System.out.println("saving the students...");
+            session.persist(tempStudent1);
+            session.persist(tempStudent2);
 
             // commit the transaction
             session.getTransaction().commit();
