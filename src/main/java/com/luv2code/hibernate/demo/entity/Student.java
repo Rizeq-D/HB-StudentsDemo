@@ -19,17 +19,18 @@ public class Student {
 
     @ElementCollection
     @CollectionTable(name = "image")
-    @org.hibernate.annotations.OrderBy(clause = "file_name") // default asc
-    @Column(name = "file_name") // default to images
-    private Set<String> images = new LinkedHashSet<String>();
+    @MapKeyColumn(name = "file_name")
+    @Column(name = "image_name") // default to images
+    @OrderBy // default asc
+    private SortedMap<String, String> images = new TreeMap<String, String>();
+
+    public Student() {
+    }
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-    }
-
-    public Student() {
     }
 
     public int getId() {
@@ -64,11 +65,11 @@ public class Student {
         this.email = email;
     }
 
-    public Set<String> getImages() {
+    public SortedMap<String, String> getImages() {
         return images;
     }
 
-    public void setImages(Set<String> images) {
+    public void setImages(SortedMap<String, String> images) {
         this.images = images;
     }
 

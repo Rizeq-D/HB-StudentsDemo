@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
 
 public class CreateStudentImagesSortedSetDemo {
 
@@ -24,13 +25,11 @@ public class CreateStudentImagesSortedSetDemo {
         try {
             // Create the object
             Student tempStudent = new Student("Rami", "Malek", "rami@gmail.com");
-            Set<String> theImages = tempStudent.getImages();
+            Map<String, String> theImages = tempStudent.getImages();
 
-            theImages.add("photo1.jpg");
-            theImages.add("photo2.jpg");
-            theImages.add("photo3.jpg");
-            theImages.add("photo4.jpg");
-            theImages.add("photo5.jpg");
+            theImages.put("photo1.jpg", "photo 1");
+            theImages.put("photo2.jpg", "photo 2");
+            theImages.put("photo3.jpg", "photo 3");
 
             // start the transaction
             session.beginTransaction();
