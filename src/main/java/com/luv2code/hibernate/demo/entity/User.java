@@ -4,12 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "USER_TYPE",
-        discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     @Column(name = "first_name")
     private String firstName;
@@ -17,7 +15,8 @@ public abstract class User {
     private String lastName;
     @Column(name = "email")
     private String email;
-    protected User() {
+
+    public User() {
     }
 
     public User(String firstName, String lastName, String email) {
