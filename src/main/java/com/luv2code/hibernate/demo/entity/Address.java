@@ -7,42 +7,42 @@ import javax.persistence.Embeddable;
 public class Address {
 
     @Column(name = "city")
-    private String City;
+    private String city;
     @Column(name = "street")
-    private String Street;
+    private String street;
     @Column(name = "zipcode")
-    private String Zipcode;
+    private String zipcode;
 
     public Address() {
     }
 
     public Address(String city, String street, String zipcode) {
-        City = city;
-        Street = street;
-        Zipcode = zipcode;
+        this.city = city;
+        this.street = street;
+        this.zipcode = zipcode;
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public void setCity(String city) {
-        City = city;
+        city = city;
     }
 
     public String getStreet() {
-        return Street;
+        return street;
     }
 
     public void setStreet(String street) {
-        Street = street;
+        street = street;
     }
 
     public String getZipcode() {
-        return Zipcode;
+        return zipcode;
     }
 
     public void setZipcode(String zipcode) {
-        Zipcode = zipcode;
+        zipcode = zipcode;
     }
 }

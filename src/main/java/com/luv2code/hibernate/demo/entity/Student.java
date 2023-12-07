@@ -16,8 +16,14 @@ public class Student {
     private String lastName;
     @Column(name = "email")
     private String email;
-    @Embedded // the address is embedded, so no need ot any annotation
+    //@Embedded // the address is embedded, so no need ot any annotation
     private Address homeAddress;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column (name = "BILLING_CITY")),
+            @AttributeOverride(name = "street", column = @Column (name = "BILLING_STREET")),
+            @AttributeOverride(name = "zipcode", column = @Column (name = "BILLING_ZIPCODE"))})
+    private Address billingAddress;
 
     public Student() {
     }
@@ -50,12 +56,21 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Address getHomeAddress() {
-        return homeAddress;
+//    public Address getHomeAddress() {
+//        return homeAddress;
+//    }
+//    public void setHomeAddress(Address homeAddress) {
+//        this.homeAddress = homeAddress;
+//    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
     }
-    public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
+
     @Override
     public String toString() {
         return "Student{" +
